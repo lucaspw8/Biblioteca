@@ -11,6 +11,7 @@
        
         @foreach($listaC as $curso)
         <tr>
+            
             <td>{{$curso->nome}}</td>
         </tr>
         @endforeach 

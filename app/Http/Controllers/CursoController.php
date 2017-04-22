@@ -1,38 +1,38 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Curso;
 use Illuminate\Http\Request;
 
-class CursoController extends Controller
-{
+class CursoController extends Controller {
+
     private $curso;
+
     public function __construct(Curso $curs) {
         $this->curso = $curs;
     }
 
-        public function index()
-    {
+    public function index() {
         $listaC = $this->curso->all();
-        return view('cursoLista', compact($listaC));
-    }
-    
-    public function teste(){
-       $verif = $this->curso->create([
-           'nome'           => 'Mecatrônica2',
-           'coordenador'    =>'Diego'
-        ]);
-       
-       if($verif){
-           return 'Deu certo';
-       }
-       else{
-           return 'Erro';
-       }
+
+        return view('cursoLista', compact('listaC'));
     }
 
-        public function create()
-    {
+    public function teste() {
+        $verif = $this->curso->create([
+            'nome' => 'Mecatrônica2',
+            'coordenador' => 'Diego'
+        ]);
+
+        if ($verif) {
+            return 'Deu certo';
+        } else {
+            return 'Erro';
+        }
+    }
+
+    public function create() {
         //
     }
 
@@ -42,8 +42,7 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -53,8 +52,7 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -64,8 +62,7 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -76,8 +73,7 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -87,8 +83,8 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }
