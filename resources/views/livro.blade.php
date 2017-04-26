@@ -21,15 +21,16 @@
         <td>{{$lista->disponivel}}</td>
         <td>
             
-            <a href="" class="acao editar">
+            <a href="{{route('livro.edit',$lista->id)}}" class="acao editar">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
-            <a href="" class="acao deletar">
-                <span class="glyphicon glyphicon-trash"></span>
+            <a href="{{route('livro.show',$lista->id)}}" class="acao deletar">
+                <span class="glyphicon glyphicon-eye-open"></span>
             </a>
         </td>
     </tr>
     @endforeach 
+     
 </table>
 
 

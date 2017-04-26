@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Livro;
 use App\Http\Requests\livroRequest;
+use Illuminate\Support\Facades\DB;
 class LivroController extends Controller
 {
     private $livro;
@@ -13,10 +14,13 @@ class LivroController extends Controller
     }
 
 
+        // Compara se $a é maior que $b
+         
     public function index()
     {
         $title = 'Livros';
-        $listaLivro = $this->livro->all();
+        //$listaLivro = $this->livro->all();
+        $listaLivro = DB::select('select * from livros order by titulo');      
         return view('livro', compact('listaLivro','title'));
     }
 
@@ -62,7 +66,9 @@ class LivroController extends Controller
      */
     public function show($id)
     {
-        //
+        $livro = $this->livro->find($id);
+        $title = $livro->titulo;
+        return view('livroShow', compact('livro'));
     }
 
     /**
@@ -73,7 +79,9 @@ class LivroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $livroEdit = $this->livro->find($id);
+        $title = "Editar Livro $livroEdit->titulo";
+        return view('livroEditar', compact('title','livroEdit'));
     }
 
     /**
@@ -83,9 +91,15 @@ class LivroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(livroRequest $request, $id)
     {
-        //
+        $dados = $request->all();
+        $livro = $this->livro->find($id);
+        $verif = $livro->update($dados);
+        if($verif)
+            return redirect()->route('livro.index');
+        else 
+            return redirect()->route('livro.edit', $id)->with(['errors' => 'Erro ao editar']);
     }
 
     /**
@@ -96,6 +110,14 @@ class LivroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $livro = $this->livro->find($id);
+        $verif = $livro->delete();
+        
+        if($verif){
+            return redirect()->route('livro.index');
+        }
+        else{
+            return redirect ()->route ('livro.show', $id)->with (['errors'=>'Erro ao Deletar']);
+        }
     }
 }
