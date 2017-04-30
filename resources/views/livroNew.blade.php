@@ -1,7 +1,7 @@
 @extends('templates.template')
 
 @section('conteudo')
-<h1>Cadastrar Livros</h1>
+<h1 class="titulo-pg">Cadastrar Livros</h1>
 @if(isset($errors) && count($errors)>0)
 <div class="alert alert-danger">
     @foreach($errors->all() as $erro)
@@ -11,7 +11,7 @@
 @endif
 <form class="form" method="post" action="{{route('livro.store')}}">
     <div class="form-group">
-    <input type="text" name="titulo" placeholder="Titulo" class="form-control" value="{{old('titulo')}}">
+        <b>Titulo:</b><input type="text" name="titulo" placeholder="Titulo" class="form-control" value="{{old('titulo')}}">
     </div>
     <div class="form-group">
         <input type="text" name="autor" placeholder="Autor" class="form-control" value="{{old('autor')}}">

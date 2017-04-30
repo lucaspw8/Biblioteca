@@ -6,11 +6,11 @@
 <a href="{{route('livro.create')}}" class="btn btn-primary btn-add"><span class="glyphicon glyphicon-plus"></span>Cadastrar</a>
 <table class="table table-striped"> 
     <tr>
-        <td>Titulo</td>
-        <td>Autor</td>
-        <td>Quantidade</td>
-        <td>Disponibilidade</td>
-        <td>Ações</td>
+        <td> <b>Titulo</b></td>
+        <td><b>Autor</b></td>
+        <td><b>Quantidade</b></td>
+        <td><b>Disponibilidade</b></td>
+        <td><b>Ações</b></td>
     </tr>   
     @foreach($listaLivro as $lista)
     <tr>
@@ -33,5 +33,6 @@
      
 </table>
 
+{{$listaLivro->links()}}
 
 @endsection

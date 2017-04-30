@@ -20,7 +20,8 @@ class LivroController extends Controller
     {
         $title = 'Livros';
         //$listaLivro = $this->livro->all();
-        $listaLivro = DB::select('select * from livros order by titulo');      
+        //$listaLivro = DB::select('select * from livros order by titulo');
+        $listaLivro = DB::table('livroView')->paginate(10);
         return view('livro', compact('listaLivro','title'));
     }
 
@@ -45,9 +46,7 @@ class LivroController extends Controller
     {
         //Recebe todos os dados do formulario
         $dados = $request->all();
-        //Validação de Dados
-       
-       // $this->validate($request, $this->livro->regras);
+        
         
         $verif = $this->livro->create($dados);
         if($verif){
@@ -68,7 +67,7 @@ class LivroController extends Controller
     {
         $livro = $this->livro->find($id);
         $title = $livro->titulo;
-        return view('livroShow', compact('livro'));
+        return view('livroShow', compact('livro','title'));
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Curso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\cursoRequest;
 
 class CursoController extends Controller {
 
@@ -14,26 +16,16 @@ class CursoController extends Controller {
     }
 
     public function index() {
-        $listaC = $this->curso->all();
 
-        return view('cursoLista', compact('listaC'));
-    }
-
-    public function teste() {
-        $verif = $this->curso->create([
-            'nome' => 'Mecatrônica2',
-            'coordenador' => 'Diego'
-        ]);
-
-        if ($verif) {
-            return 'Deu certo';
-        } else {
-            return 'Erro';
-        }
+        //$listaC = $this->curso->all();
+        $title = "Lista de Cursos";
+        $listaC = DB::select('select * from cursos order by nome');
+        return view('cursoLista', compact('listaC', 'title'));
     }
 
     public function create() {
-        //
+        $title = "Cadastro de Cursos";
+        return view('cursoNew', compact($title));
     }
 
     /**
@@ -42,8 +34,16 @@ class CursoController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        //
+    public function store(cursoRequest $request) {
+        $dados = $request->all();
+
+
+        $verif = $this->curso->create($dados);
+        if ($verif) {
+            return redirect()->route('curso.index');
+        } else {
+            return redirect()->route('curso.create');
+        }
     }
 
     /**
@@ -53,7 +53,9 @@ class CursoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
+        $curso = $this->curso->find($id);
+        $title = $curso->nome;
+        return view('cursoShow', compact('curso','title'));
     }
 
     /**
@@ -63,7 +65,9 @@ class CursoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        $curso = $this->curso->find($id);
+        $title = "Editar Curso $curso->nome";
+        return view('cursoEdit', compact('title', 'curso'));
     }
 
     /**
@@ -74,7 +78,13 @@ class CursoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        $dados = $request->all();
+        $curso = $this->curso->find($id);
+        $verif = $curso->update($dados);
+        if ($verif)
+            return redirect()->route('curso.index');
+        else
+            return redirect()->route('curso.edit', $id)->with(['errors' => 'Erro ao editar']);
     }
 
     /**
@@ -84,7 +94,15 @@ class CursoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        //
+        $curso = $this->curso->find($id);
+        $verif = $curso->delete();
+        
+        if($verif){
+            return redirect()->route('curso.index');
+        }
+        else{
+            return redirect ()->route ('curso.show', $id)->with (['errors'=>'Erro ao Deletar']);
+        }
     }
 
 }
