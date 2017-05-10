@@ -12,10 +12,13 @@
     @endforeach
 </div>
 @endif
-<form method="POST" action={{route('curso.destroy',$curso->id)}}>
+
+
+<form method="POST" name="apagarCurso" action= {{route('curso.destroy',$curso->id)}}>
                       {{method_field('DELETE')}}
                       {{csrf_field()}}
-                      <input class="btn btn-danger"type="submit" value="Deletar {{$curso->nome}}">
+                      
+                      <input class="btn btn-danger" type="submit" onclick=" return confirm('Tem certeza que quer Apagar {{$curso->nome}}?');" value="Deletar {{$curso->nome}}">
                     </form>
 
 @endsection

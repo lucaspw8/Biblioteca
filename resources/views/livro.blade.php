@@ -27,6 +27,9 @@
             <a href="{{route('livro.show',$lista->id)}}" class="acao deletar">
                 <span class="glyphicon glyphicon-eye-open"></span>
             </a>
+            <a href="{{route('livro.show',$lista->id)}}" class="acao deletar">
+                <span class="glyphicon glyphicon-transfer"></span>
+            </a>
         </td>
     </tr>
     @endforeach 

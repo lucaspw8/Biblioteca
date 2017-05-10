@@ -1,26 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Gerente;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class GerenteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+   private $gerente;
+   
+   public function __construct(Gerente $ger) {
+       $this->gerente = $ger;
+   }
+   
+  
+
+   public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         //

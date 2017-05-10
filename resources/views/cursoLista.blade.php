@@ -25,6 +25,7 @@
             <a href="{{route('curso.show',$lista->id)}}" class="acao deletar">
                 <span class="glyphicon glyphicon-eye-open"></span>
             </a>
+            
         </td>
     </tr>
     @endforeach 
