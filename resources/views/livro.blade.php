@@ -2,10 +2,10 @@
 
 @section('conteudo')
 
-<h1 class="titulo-pg">Lista de livros</h1>
+<h1 class="titulo-pg">Lista de livros Cadastrados</h1>
 <a href="{{route('livro.create')}}" class="btn btn-primary btn-add"><span class="glyphicon glyphicon-plus"></span>Cadastrar</a>
 <table class="table table-striped"> 
-    <tr>
+    <tr>    
         <td> <b>Titulo</b></td>
         <td><b>Autor</b></td>
         <td><b>Quantidade</b></td>
@@ -27,9 +27,7 @@
             <a href="{{route('livro.show',$lista->id)}}" class="acao deletar">
                 <span class="glyphicon glyphicon-eye-open"></span>
             </a>
-            <a href="{{route('livro.show',$lista->id)}}" class="acao deletar">
-                <span class="glyphicon glyphicon-transfer"></span>
-            </a>
+            
         </td>
     </tr>
     @endforeach 

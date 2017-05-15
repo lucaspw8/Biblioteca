@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class loginController extends Controller
 {
+    public function index(){
+        return view('login');
+    }
+
     public function login(Request $request){
        $dados= $request->all();
        $login = $dados['login'];
@@ -18,8 +22,9 @@ class loginController extends Controller
                session_start();
                $_SESSION["loginAdm"] = $login2->login;
                $_SESSION["idLoginAdm"] = $login2->id;
-               
-               return redirect()->route('livro.index');
+               $menu="home";
+               return redirect()->route('home');
+              // return redirect()->route('livro.index');
            }
             
        }
@@ -34,7 +39,8 @@ class loginController extends Controller
                     $_SESSION["loginUsu"] = $login2->login;
                     $_SESSION["idLoginUsu "] = $login2->id;
 
-                    return redirect()->route('livro.index');
+                    $menu="home";
+                    return redirect()->route('home');
                 }
               }         
 
@@ -42,5 +48,20 @@ class loginController extends Controller
         }
         $erro = "Login ou senha invalidos";
         return view('login', compact('erro'));
+    }
+    
+    public function sair(){
+        session_start();    
+    $verif = session_destroy();
+    
+    if($verif == TRUE){
+        return redirect()->route('login.index');
+    }
+    }
+    
+    public function home(){
+        $menu = "home";
+        session_start();
+         return view('home', compact('menu'));
     }
 }

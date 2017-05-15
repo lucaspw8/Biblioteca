@@ -8,14 +8,17 @@ use App\Livro;
 class relController extends Controller
 {
     public function teste(){
-        $disciplina = Disciplina::where('id','7')->get()->first();
-        echo "<h1>$disciplina->nome</h1>";
+        $disciplina = Disciplina::all();
+        foreach ($disciplina as $disc){
+        echo "<h1><br>$disc->nome</h1>";
         
-        $livros = $disciplina->livros;
+        $livros = $disc->livros;
         
         foreach ($livros as $livro){
-            echo "<br> $livro->titulo";
+            echo " $livro->titulo";
         }
+        }
+        
     }
     
     public function testeinverse(){

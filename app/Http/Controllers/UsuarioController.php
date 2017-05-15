@@ -18,7 +18,7 @@ class UsuarioController extends Controller
         session_start();
         if (isset($_SESSION["loginAdm"])) {
             $title = "Usuários";
-            $listaUser = DB::table('usuarioorder')->paginate(1);
+            $listaUser = DB::table('usuarioorder')->paginate(10);
             return view('usuarioview', compact('listaUser', 'title', 'menu'));
         } else {
             return view('erroLogin', compact('menu'));

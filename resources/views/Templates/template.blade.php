@@ -24,20 +24,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>                
                 </button>                
-                <a href="#" class="navbar-brand">Biblioteca</a>                
+                <a href="{{route('home')}}" class="navbar-brand">Biblioteca</a>                
             </div>
              
             <div id="navbarCollapse" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li @if($menu=="home") class="active" @endif><a href="#">Home</a></li>
+                    <li @if($menu=="home") class="active" @endif><a href="{{route('home')}}">Home</a></li>
                     <li @if($menu=="livro") class="active" @endif><a href="{{route('livro.index')}}">Livros</a></li>
                     <li @if($menu=="curso") class="active" @endif><a href="{{route('curso.index')}}">Cursos</a></li>
                     <li @if($menu=="usuario") class="active" @endif><a href="{{route('usuario.index')}}">Usuários</a></li>
                     <li @if($menu=="disciplina") class="active" @endif><a href="{{route('disciplina.index')}}">Disciplinas</a></li> 
-                    <li @if($menu=="bibliografia") class="active" @endif><a href="{{route('disciplina.index')}}">Bibliografia</a></li> 
+                    <li @if($menu=="bibliografia") class="active" @endif><a href="{{route('bibliografia.index')}}">Bibliografia</a></li> 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="login">Login</a></li>
+                    <?php
+                    
+                    if(isset($_SESSION["loginAdm"]) || isset($_SESSION["loginUsu"] )){
+                        echo "<li><a href='login/sair'>Logout</a></li>";
+                    }else{
+                        echo "<li><a href='login'>Login</a></li>";
+                    }
+                    
+                    ?>        
                 </ul>
             </div>
             

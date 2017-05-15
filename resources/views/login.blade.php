@@ -32,7 +32,7 @@
 
                 </div>
                 @endif
-            <form action="{{route('login.teste')}}" method="POST">
+            <form action="{{route('login.validar')}}" method="POST">
             <input type="text" name="login" class="form-control input-sm chat-input" placeholder="Login" />
             </br>
             <input type="password" name="senha" class="form-control input-sm chat-input" placeholder="Senha" />

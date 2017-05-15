@@ -1,7 +1,8 @@
 @extends('templates.template')
 
 @section('conteudo')
-
+    
+    <h1 class="titulo-pg">Definir Livro</h1>
     <form class="form" method="post" action="{{route('disc_livro.insert')}}">
        <div class="form form-group">
         <select name="id_livro" class="form-control">
