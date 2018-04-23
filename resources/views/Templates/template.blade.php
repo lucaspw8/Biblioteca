@@ -52,7 +52,7 @@
         </nav>
         <div class="container">
             
-        @yield('conteudo')
+             @yield('conteudo')
         </div>
        
      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
